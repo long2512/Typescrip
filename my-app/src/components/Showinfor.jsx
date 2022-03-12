@@ -1,7 +1,7 @@
 const ShowInfor = (props) =>{
     return <div>
         <h1>Hello {props.name}</h1>
-    <   img src={props.linkanh} alt="" />
+    <img src={props.linkanh} alt="" />
 
     </div>
 }
