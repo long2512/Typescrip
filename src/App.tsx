@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react'
-// import { NavLink } from 
+import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import './App.css'
+import WebsiteLayout from './pages/layouts/WebsiteLayout';
+import Home from './pages/Home';
+import AdminLayout from './pages/layouts/Adminlayout';
+import Dashboard from './pages/Dashboard';
+import ProductManager from './pages/layouts/ProductManager';
+import ProductAdd from './pages/ProductAdd';
+
 
 
 interface IProduct{
@@ -25,7 +32,7 @@ function App() {
   return (
     <div className="App">
         {products.map(item => <div>{item.name}</div>)}
-        {/* <header>
+        <header>
             <ul>
               <li>
                 <NavLink to="/Home Page">Home Page</NavLink>
@@ -40,9 +47,23 @@ function App() {
         </header>
         <main>
           <Routes>
+            <Route path='/' element={<WebsiteLayout/>}/>
+              <Route index element={<Home/>}/>
+              <Route path="product" element={<h1>Hien thi san pham</h1>} />
+              <Route path="about" element={<h1>About page</h1>} />
             <Route/>
+
+            <Route path="admin" element={<AdminLayout />}>
+                <Route index element={<Navigate to="dashboard"/>} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="products" element={<ProductManager />} />
+                <Route path="products">
+                    <Route  element={<ProductManager />} />
+                    <Route path="add" element={<ProductAdd />} />
+                </Route>
+            </Route>
           </Routes>
-        </main> */}
+        </main>
     </div>
   )
 }
