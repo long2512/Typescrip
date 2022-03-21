@@ -8,6 +8,7 @@ import AdminLayout from './pages/layouts/Adminlayout';
 import Dashboard from './pages/Dashboard';
 import ProductManager from './pages/layouts/ProductManager';
 import ProductAdd from './pages/ProductAdd';
+import { add, remove } from './api/product';
 
 
 
@@ -28,6 +29,16 @@ function App() {
     };
     getProducts();
   }, [])
+  const removeItem = (id: number) =>{
+    //call api
+    remove(id);
+    // reRender
+    setProducts(products.filter(item => item.id !== id));
+  }
+  const onHandleAdd = async (product: IProduct) =>{
+    const { data } = await add(product);
+    setProducts([...products,data])
+  }
 
   return (
     <div className="App">
@@ -58,7 +69,7 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="products" element={<ProductManager />} />
                 <Route path="products">
-                    <Route  element={<ProductManager />} />
+                    <Route index element={<ProductManager  products={products} onRemove={removeItem}/>} />
                     <Route path="add" element={<ProductAdd />} />
                 </Route>
             </Route>

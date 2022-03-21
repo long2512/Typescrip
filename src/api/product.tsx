@@ -1,3 +1,4 @@
+import { IProduct } from "../type/product";
 import instance from "./instance";
 
 export const list = () => {
@@ -8,3 +9,7 @@ export const remove = (id: number) => {
     const url = `/product/${id}`;
     return instance.delete(url);
 }
+export const add = (product: IProduct) => {
+    const url = "/product";
+    return instance.post(url, product);
+} 
