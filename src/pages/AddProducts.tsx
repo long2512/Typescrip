@@ -3,7 +3,6 @@ import { IProduct } from '../types/products';
 import { useNavigate } from 'react-router-dom';
 
 type ProductAddProps = {
-    name: string,
     onAdd: (product: IProduct) => void
 }
 type TInputs = {
@@ -14,7 +13,7 @@ type TInputs = {
 const ProductAdd = (props: ProductAddProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<TInputs>()
     const Navigate =  useNavigate();
-    const onSubmit: SubmitHandler<TInputs> = data => {
+    const onSubmit: SubmitHandler<TInputs> = (data : IProduct) => {
         props.onAdd(data)
         Navigate('/admin/products')
     }

@@ -6,11 +6,11 @@ export const list = () => {
     return instance.get(url);
 }
 export const remove = (id: number) => {
-    const url = `/product/${id}`;
+    const url = `/products/${id}`;
     return instance.delete(url);
 }
 export const read = (id: string | undefined) => {
-    const url = `/product/${id}`;
+    const url = `/products/${id}`;
     return instance.get(url);
 }
 
